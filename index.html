@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Age Calculator by Rizwan Ali</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="calculator">
+      <h1>JavaScript <br> <span>Age Calculator</span></h1> <br>
+      <h3>Design by Rizwan Ali</h3>
+      <div class="input-box">
+        <input type="date" id="date">
+        <button onclick="calculateAge()">Calculate</button>
+      </div>
+      <p id="result"></p>
+    </div>
+  </div>
+
+  <script>
+    function calculateAge() {
+      let userInput = document.getElementById("date").value;
+      let birthDate = new Date(userInput);
+      let today = new Date();
+
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+      let days = today.getDate() - birthDate.getDate();
+
+      if (months < 0 || (months === 0 && days < 0)) {
+        years--;
+        months = 12 + months;
+      }
+
+      if (days < 0) {
+        months--;
+        days = new Date(today.getFullYear(), today.getMonth(), 0).getDate() + days;
+      }
+
+      document.getElementById("result").innerText = `Your age is: ${years} years, ${months} months, and ${days} days`;
+    }
+  </script>
+</body>
+</html>
+
